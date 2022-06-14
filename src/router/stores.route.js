@@ -11,9 +11,11 @@ const storesRepository = new StoresRepository();
 storeRoute.post("/", (request, response) => {
     const {id, store_name, area} = request.body;
 
-    const storeExists = storesRepository.findById({id});
+    const store_nameExists = storesRepository.findByName({store_name});
+    const storeArea = storesRepository.findByArea({area});
 
-    if(storeExists) {
+
+    if(store_nameExists  && storeArea) {
         return response.status(404).json("store already exists");
     }
 
@@ -29,6 +31,7 @@ storeRoute.get("/", (request, response) => {
 
     return response.status(201).json(list)
 })
+
 
 
 //delete a user
@@ -47,6 +50,7 @@ storeRoute.delete("/:id", (request, response) => {
 })
 
 
+
 //update store name
 storeRoute.patch("/:id", (request, response) => {
     const {id} = request.params;
@@ -57,7 +61,7 @@ storeRoute.patch("/:id", (request, response) => {
         return response.status(404).json({error: "user not found sorry..:("});
     }
 
-    const newStoreName = storesRepository.updateName({id, store_name});
+    const newStoreName = storesRepository.updateByName({id, store_name});
 
     return response.status(201).json(newStoreName);
 })

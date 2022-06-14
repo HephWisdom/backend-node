@@ -29,9 +29,9 @@ delete({id}) {
 
 
 //update store
-updateName({ id, store_name}) {
+updateByName({ id, store_name}) {
     const newStore = this.stores.find((store) => store.id === id);
-    newStore.name = (store_name);
+    newStore.store_name = (store_name);
     newStore.date_updated = new Date();
 
     const storeIndex = this.stores.findIndex((store) => store.id === id);
@@ -48,6 +48,18 @@ findById({id}) {
     return storeId;
 }
 
+//findByName
+findByName({store_name}) {
+    const storeName = this.stores.find((store) => store.store_name === store_name);
+
+    return storeName
+}
+
+//findByArea
+findByArea({area}) {
+    const storeArea = this.stores.find((store) => store.area === area);
+    return storeArea;
+}
 
 //list
 list() {
