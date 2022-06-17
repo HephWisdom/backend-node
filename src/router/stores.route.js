@@ -7,6 +7,7 @@ const storeRoute = Router();
 const storesRepository = new StoresRepository();
 
 
+
 //create 
 storeRoute.post("/", (request, response) => {
     const {id, store_name, area} = request.body;
@@ -25,7 +26,8 @@ storeRoute.post("/", (request, response) => {
 })
 
 
-//get all users in the array
+
+//get all users
 storeRoute.get("/", (request, response) => {
     const list = storesRepository.list();
 
@@ -51,6 +53,7 @@ storeRoute.delete("/:id", (request, response) => {
 
 
 
+
 //update store name
 storeRoute.patch("/:id", (request, response) => {
     const {id} = request.params;
@@ -65,5 +68,6 @@ storeRoute.patch("/:id", (request, response) => {
 
     return response.status(201).json(newStoreName);
 })
+
 
 export {storeRoute};
